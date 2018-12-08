@@ -1,13 +1,48 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yuliusardian
+ * Date: 12/8/18
+ * Time: 12:11 PM
+ */
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+require_once env('PIMCORE_PATH');
 
-class Controller extends BaseController
+use Carbon\Carbon;
+
+class Controller extends DefaultController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public $code, $message, $data, $transaction_token;
+
+    public function setCode($code = null)
+    {
+        $this->code = $code;
+    }
+
+    public function setMessage($message = null)
+    {
+        $this->message = $message;
+    }
+
+    public function setData($data = null)
+    {
+        $this->data = $data;
+    }
+
+    protected function setTransactionToken()
+    {
+        $this->transaction_token = Carbon::now()->timestamp;
+    }
+
+    public function getReturn()
+    {
+        $response['code']               = $this->code;
+        $response['message']            = $this->message;
+        $response['data']               = $this->data;
+
+        return $response;
+    }
 }

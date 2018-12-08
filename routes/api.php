@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +12,29 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('/', function () {
+        return response(app()->version(), 200);
+    });
+
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('register', 'Api\v1\AuthenticatedController@register');
+        Route::post('login', 'Api\v1\AuthenticatedController@login');
+    });
+
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        Route::group(['prefix' => 'auth'], function () {
+            Route::get('logout', 'Api\v1\AuthenticatedController@logout');
+        });
+
+        Route::group(['prefix' => 'member'], function () {
+            Route::get('detail', function () {
+                return response('detail', 200);
+            });
+            Route::post('update', function () {
+                return response('update', 200);
+            });
+        });
+    });
+
 });
