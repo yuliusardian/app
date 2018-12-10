@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <!----Loader Start---->
-    <div class="ms_loader">
-        <div class="wrap">
-            <img src="images/loader.gif" alt="">
-        </div>
-    </div>
     <!----Main Wrapper Start---->
     <div class="ms_main_wrapper">
         <div class="modal-dialog login_dialog">
