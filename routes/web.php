@@ -32,3 +32,17 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * need auth
+ */
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('profile', 'Web\ProfileController@index')->name('profile');
+    Route::post('profile', 'Web\ProfileController@update');
+
+    Route::get('artist', 'Web\ArtistController@index')->name('artist');
+
+    Route::get('genre', 'Web\GenreController@index')->name('genre');
+
+    Route::get('album', 'Web\AlbumController@index')->name('album');
+});

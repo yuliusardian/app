@@ -13,11 +13,6 @@ use Carbon\Carbon;
 
 class RegisterCustomController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -51,11 +46,15 @@ class RegisterCustomController extends Controller
             $userPimcore->setPublished(true);
             $userPimcore->save();
 
-            return [];
+            return redirect()->with([
+                'success' => 'Yoho, Register successfully ! Now you can login.'
+            ]);
 
         } catch (\Exception $e) {
 
-            return [];
+            return redirect()->with([
+                'failed' => 'OMG ! Something went wrong happened. Please contact your webadmin.'
+            ]);
 
         }
     }
