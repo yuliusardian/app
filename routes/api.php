@@ -35,6 +35,17 @@ Route::group(['prefix' => 'v1'], function () {
                 return response('update', 200);
             });
         });
+
+        Route::group(['prefix' => 'interaction'], function () {
+            Route::get('/', function () {
+                return Response('Test', 201);
+            });
+
+            Route::post('favourite', function () {
+                return Response('favourite', 201);
+            })->name('interaction.favourite');
+        });
+
     });
 
 });

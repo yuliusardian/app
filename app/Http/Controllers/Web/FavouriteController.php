@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Pimcore\Model\DataObject\User as UserPimcore;
 
 class FavouriteController extends Controller
 {
@@ -14,7 +15,9 @@ class FavouriteController extends Controller
      */
     public function index()
     {
-        return view('web.favourite');
+        $user = UserPimcore::getById(auth()->id(), 1);
+        $favouriteCollections = $user->getFavourite() ? $user->getFavourite()->getItems() : null;
+        return view('web.favourite', $favouriteCollections);
     }
 
     /**

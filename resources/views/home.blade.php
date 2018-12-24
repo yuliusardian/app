@@ -2,6 +2,14 @@
 
 @section('content')
 
+    @if (!empty($ads))
+        @foreach($ads as $ad)
+            @php
+                $first = $ad['img'];
+            @endphp
+        @endforeach
+    @endif
+
     <div class="ms-banner">
         <div class="container-fluid">
             <div class="row">
@@ -208,7 +216,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="#"><img src="http://via.placeholder.com/730x90" alt="" class="img-fluid"/></a>
+                    <a href="#"><img src="{{ $first }}" class="img-fluid"/></a>
                 </div>
             </div>
         </div>
@@ -228,94 +236,6 @@
                             <span class="slider_dot"></span>
                             <div class="w_tp_song_img">
                                 <img src="images/weekly/song1.jpg" alt="">
-                                <div class="ms_song_overlay">
-                                </div>
-                                <div class="ms_play_icon">
-                                    <img src="images/svg/play.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="w_tp_song_name">
-                                <h3><a href="#">Dark Alley Acoustic</a></h3>
-                                <p>Ava Cornish</p>
-                            </div>
-                        </div>
-                        <div class="weekly_right">
-                            <span class="w_song_time">5:10</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="ms_release_box">
-                        <div class="w_top_song">
-                            <span class="slider_dot"></span>
-                            <div class="w_tp_song_img">
-                                <img src="images/weekly/song2.jpg" alt="">
-                                <div class="ms_song_overlay">
-                                </div>
-                                <div class="ms_play_icon">
-                                    <img src="images/svg/play.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="w_tp_song_name">
-                                <h3><a href="#">Dark Alley Acoustic</a></h3>
-                                <p>Ava Cornish</p>
-                            </div>
-                        </div>
-                        <div class="weekly_right">
-                            <span class="w_song_time">5:10</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="ms_release_box">
-                        <div class="w_top_song">
-                            <span class="slider_dot"></span>
-                            <div class="w_tp_song_img">
-                                <img src="images/weekly/song3.jpg" alt="">
-                                <div class="ms_song_overlay">
-                                </div>
-                                <div class="ms_play_icon">
-                                    <img src="images/svg/play.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="w_tp_song_name">
-                                <h3><a href="#">Dark Alley Acoustic</a></h3>
-                                <p>Ava Cornish</p>
-                            </div>
-                        </div>
-                        <div class="weekly_right">
-                            <span class="w_song_time">5:10</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="ms_release_box">
-                        <div class="w_top_song">
-                            <span class="slider_dot"></span>
-                            <div class="w_tp_song_img">
-                                <img src="images/weekly/song4.jpg" alt="">
-                                <div class="ms_song_overlay">
-                                </div>
-                                <div class="ms_play_icon">
-                                    <img src="images/svg/play.svg" alt="">
-                                </div>
-                            </div>
-                            <div class="w_tp_song_name">
-                                <h3><a href="#">Dark Alley Acoustic</a></h3>
-                                <p>Ava Cornish</p>
-                            </div>
-                        </div>
-                        <div class="weekly_right">
-                            <span class="w_song_time">5:10</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="ms_release_box">
-                        <div class="w_top_song">
-                            <span class="slider_dot"></span>
-                            <div class="w_tp_song_img">
-                                <img src="images/weekly/song5.jpg" alt="">
                                 <div class="ms_song_overlay">
                                 </div>
                                 <div class="ms_play_icon">

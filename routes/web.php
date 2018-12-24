@@ -51,4 +51,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('favourite', 'Web\FavouriteController@index')->name('favourite');
 
     Route::get('history', 'Web\HistoryController@index')->name('history');
+
+    Route::group(['prefix' => 'interaction'], function () {
+        Route::get('/', function () {
+            return Response('Test', 201);
+        });
+
+        Route::post('favourite/{song_id}', 'Web\InteractionController@favourite')->name('web.interaction.favourite');
+        Route::post('play/{song_id}', 'Web\InteractionController@play')->name('web.interaction.play');
+        Route::post('search', 'Web\InteractionController@search')->name('web.interaction.search');
+    });
 });

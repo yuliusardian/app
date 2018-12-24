@@ -39,10 +39,10 @@
             <div class="ms_sidemenu_inner">
                 <div class="ms_logo_inner">
                     <div class="ms_logo">
-                        <a href="{{ route('home') }}"><img src="images/logo.png" alt="" class="img-fluid"/></a>
+                        <a href="{{ route('home') }}"><img src="{{ URL('/') }}/images/logo.png" alt="" class="img-fluid"/></a>
                     </div>
                     <div class="ms_logo_open">
-                        <a href="{{ route('home') }}"><img src="images/open_logo.png" alt="" class="img-fluid"/></a>
+                        <a href="{{ route('home') }}"><img src="{{ URL('/') }}/images/open_logo.png" alt="" class="img-fluid"/></a>
                     </div>
                 </div>
                 <div class="ms_nav_wrapper">
@@ -148,10 +148,15 @@
             <div class="ms_header">
                 <div class="ms_top_left">
                     <div class="ms_top_search">
-                        <input type="text" class="form-control" placeholder="@lang('placeholder.searchSong')">
-                        <span class="search_icon">
-                        <img src="images/svg/search.svg" alt="">
-                    </span>
+                        <form method="post" action="{{ Route('web.interaction.search') }}">
+                            @csrf
+                            <input type="text" name="keyword" class="form-control" placeholder="@lang('placeholder.searchSong')" autocomplete="off">
+                            <button type="submit">
+                                <span class="search_icon">
+                                    <img src="images/svg/search.svg" alt="">
+                                </span>
+                            </button>
+                        </form>
                     </div>
                     <div class="ms_top_trend">
                         <span><a href="#"  class="ms_color">Trending Songs :</a></span> <span class="top_marquee"><a href="#">TODO FETCH FROM DB</a></span>
