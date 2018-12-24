@@ -58,62 +58,62 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('album') }}" class="{{ Request::is('album') ? 'active' : '' }}">
+                            <a href="{{ route('album') }}" class="{{ Request::is('album') ? 'active' : '' }}" title="@lang('menus.album')">
                                 <span class="nav_icon">
                                     <span class="icon icon_albums"></span>
                                 </span>
                                 <span class="nav_text">
-                                    albums
+                                    @lang('menus.album')
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('artist') }}" class="{{ Request::is('artist') ? 'active' : '' }}">
+                            <a href="{{ route('artist') }}" class="{{ Request::is('artist') ? 'active' : '' }}" title="@lang('menus.artist')">
                                 <span class="nav_icon">
                                     <span class="icon icon_artists"></span>
                                 </span>
                                 <span class="nav_text">
-                                    artists
+                                    @lang('menus.artist')
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('genre') }}" class="{{ Request::is('genre') ? 'active' : '' }}">
+                            <a href="{{ route('genre') }}" class="{{ Request::is('genre') ? 'active' : '' }}" title="@lang('menus.genre')">
                                 <span class="nav_icon">
                                     <span class="icon icon_genres"></span>
                                 </span>
                                 <span class="nav_text">
-                                    genres
+                                    @lang('menus.genre')
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="top_track.html">
+                            <a href="{{ route('toptrack') }}" class="{{ Request::is('toptrack') ? 'active' : '' }}" title="@lang('menus.toptrack')">
                                 <span class="nav_icon">
                                     <span class="icon icon_tracks"></span>
                                 </span>
                                 <span class="nav_text">
-                                    top tracks
+                                    @lang('menus.toptrack')
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="favourite.html" title="Favourites">
+                            <a href="{{ route('favourite') }}" class="{{ Request::is('favourite') ? 'active' : '' }}" title="@lang('menus.favourite')">
                                 <span class="nav_icon">
                                     <span class="icon icon_favourite"></span>
                                 </span>
                                 <span class="nav_text">
-                                    favourites
+                                    @lang('menus.favourite')
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="history.html">
+                            <a href="{{ route('history') }}" class="{{ Request::is('history') ? 'active' : '' }}" title="@lang('menus.history')">
                                 <span class="nav_icon">
                                     <span class="icon icon_history"></span>
                                 </span>
                                 <span class="nav_text">
-                                    history
+                                    @lang('menus.history')
                                 </span>
                             </a>
                         </li>
@@ -130,7 +130,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="add_playlist.html" class="active">
+                            <a href="add_playlist.html">
                                 <span class="nav_icon">
                                     <span class="icon icon_c_playlist"></span>
                                 </span>
@@ -148,7 +148,7 @@
             <div class="ms_header">
                 <div class="ms_top_left">
                     <div class="ms_top_search">
-                        <input type="text" class="form-control" placeholder="Search Music Here..">
+                        <input type="text" class="form-control" placeholder="@lang('placeholder.searchSong')">
                         <span class="search_icon">
                         <img src="images/svg/search.svg" alt="">
                     </span>
@@ -166,12 +166,12 @@
                         <a href="javascript:;" class="ms_admin_name">{{ Auth::user()->name }}<span class="ms_pro_name">@php echo mb_substr(Auth::user()->name, 0, 1); @endphp</span>
                         </a>
                         <ul class="pro_dropdown_menu">
-                            <li><a href="{{ route('profile') }}">Profile</a></li>
+                            <li><a href="{{ route('profile') }}">@lang('menus.profile')</a></li>
                             {{--<li><a href="manage_acc.html" target="_blank">Pricing Plan</a></li>--}}
                             {{--<li><a href="blog.html" target="_blank">Blog</a></li>--}}
                             {{--<li><a href="#">Setting</a></li>--}}
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">@lang('menus.logout')</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

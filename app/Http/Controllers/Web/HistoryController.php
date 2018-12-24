@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Pimcore\Model\DataObject\SongAlbum;
 
-class AlbumController extends Controller
+class HistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,23 +14,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $featuredAlbumListData = null;
-        $featuredAlbumList = new SongAlbum\Listing();
-        $featuredAlbumList->setLimit(20);
-        $featuredAlbumList->load();
-        if ($featuredAlbumList->getCount() > 0) {
-            foreach ($featuredAlbumList->getObjects() as $object) {
-                $tmpFeaturedAlbum['id']     = $object->getId();
-                $tmpFeaturedAlbum['name']   = $object->getName();
-                $tmpFeaturedAlbum['img']    = $object->getImg() ? \Pimcore\Tool::getHostUrl().$object->getImg()->getFullPath() : 'http://via.placeholder.com/240';
-                $tmpFeaturedAlbum['artist'] = $object->getArtist() ? $object->getArtist()->getName() : '-';
-                $featuredAlbumListData[]    = $tmpFeaturedAlbum;
-            }
-        }
-
-        return view('web.album', [
-            'featured_albums'   => $featuredAlbumListData,
-        ]);
+        return view('web.history');
     }
 
     /**

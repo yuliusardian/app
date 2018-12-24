@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->redirectTo('login');
 });
 
 //Auth::routes();
@@ -45,4 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('genre', 'Web\GenreController@index')->name('genre');
 
     Route::get('album', 'Web\AlbumController@index')->name('album');
+
+    Route::get('toptrack', 'Web\TopTrackController@index')->name('toptrack');
+
+    Route::get('favourite', 'Web\FavouriteController@index')->name('favourite');
+
+    Route::get('history', 'Web\HistoryController@index')->name('history');
 });

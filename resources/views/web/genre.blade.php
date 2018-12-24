@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="ms_heading">
                     <h1>Top Genres</h1>
-                    <span class="veiw_all"><a href="#">view more</a></span>
+                    <span class="veiw_all"><a href="#">@lang('buttons.viewMore')</a></span>
                 </div>
             </div>
             <div class="col-lg-4">
