@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 require_once env('PIMCORE_PATH');
 
 use Carbon\Carbon;
+use Pimcore\Model\DataObject\User as UserPimcore;
 
 class Controller extends DefaultController
 {
@@ -44,5 +45,18 @@ class Controller extends DefaultController
         $response['data']               = $this->data;
 
         return $response;
+    }
+
+    public function getUser()
+    {
+        $userObj = UserPimcore::getById(auth()->id(), 1);
+        $returnUserObj = $userObj ? $userObj : null;
+        return $returnUserObj;
+    }
+
+    public function getUserLevel()
+    {
+        $userObj = $this->getUser();
+        return $userObj;
     }
 }

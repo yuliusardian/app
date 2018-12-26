@@ -15,5 +15,12 @@ return [
     'featuredArtist' => 'Artis Pilihan',
     'newReleases' => 'Baru dirilis',
     'featuredAlbum' => 'Album Pilihan',
-    'topGenre' => 'Genre Teratas'
+    'trendingAlbum' => 'Trending Album',
+    'topAlbum' => 'Album Teratas',
+    'topGenre' => 'Genre Teratas',
+    'albumByArtist' => 'Album oleh artis',
+    'newlyReleasedAlbums' => 'Album yang Baru Dirilis',
+    'topArtist' => 'Artis Teratas',
+    'yourFavourite' => 'Favorit Anda',
+    'newSong' => 'Lagu terbaru'
 ];

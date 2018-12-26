@@ -36,6 +36,7 @@ class HomeController extends Controller
                 ];
             }
         }
+        $checkUserLevel = $this->getUserLevel();
         return view('home', [
             'ads' => $ads
         ]);

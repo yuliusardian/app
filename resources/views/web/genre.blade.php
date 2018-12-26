@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="ms_genres_wrapper ms_genres_single padder_top90">
+    <div class="ms_genres_wrapper ms_genres_single padder_top20">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ms_heading">
-                    <h1>Top Genres</h1>
+                    <h1>@lang('texts.topGenre')</h1>
                     <span class="veiw_all"><a href="#">@lang('buttons.viewMore')</a></span>
                 </div>
             </div>
