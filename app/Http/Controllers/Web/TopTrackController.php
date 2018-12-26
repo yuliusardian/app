@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\FavouriteHelper;
+use App\Helpers\QueueHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Pimcore\Model\DataObject\Song;
 
 class TopTrackController extends Controller
 {
@@ -14,7 +17,30 @@ class TopTrackController extends Controller
      */
     public function index()
     {
-        return view('web.toptrack');
+        $songList = new Song\Listing();
+        $songList->load();
+        $songs = [];
+        if (!empty($songList->getObjects())) {
+            foreach ($songList->getObjects() as $song) {
+                $tmp[] = [
+                    'id' => $song->getId(),
+                    'image' => $song->getImg() ? $song->getImg()->getThumbnail() : 'http://via.placeholder.com/100',
+                    'title' => $song->getName(),
+                    'artist' => $song->getArtist()->getName(),
+                    'mp3' => $song->getFile() ? $song->getFile() : 'http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3',
+                    'option' => ''
+                ];
+            }
+            $songs = $tmp;
+        }
+
+//        $addQueue = QueueHelper::checkAndAdd(74);
+//        dd($addQueue);
+
+//        $addFavourite = FavouriteHelper::checkAndAdd(74);
+//        dd($addFavourite);
+
+        return view('web.toptrack', ['songs' => $songs]);
     }
 
     /**

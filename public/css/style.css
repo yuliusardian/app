@@ -2388,6 +2388,8 @@ i.ms_icon.icon_share {
 }
 .jp-playlist span.que_img img {
 	border-radius: 5px;
+	max-width: 50px;
+	max-height: 50px;
 }
 .jp-playlist .que_data {
 	width: calc(100% - 50px);

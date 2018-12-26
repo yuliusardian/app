@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ViewVariables::class
         ],
 
         'api' => [
@@ -62,6 +63,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt.auth' => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class,
+        'view.variable' => \App\Http\Middleware\ViewVariables::class,
     ];
 
     /**

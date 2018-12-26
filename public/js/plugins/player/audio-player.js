@@ -121,7 +121,7 @@ $(function() {
 			$('.knob-wrapper').mousedown(function() {
                 $(window).mousemove(function(e) {
                     var angle1 = getRotationDegrees($('.knob')),
-					volume = angle1 / 270 					
+					volume = angle1 / 270
 					
                     if (volume > 1) {
                         $("#jquery_jplayer_1").jPlayer("volume", 1);
@@ -131,7 +131,7 @@ $(function() {
                         $("#jquery_jplayer_1").jPlayer("volume", volume);
                         $("#jquery_jplayer_1").jPlayer("unmute");
                     }
-                });
+                });z
 				
                 return false;
             }).mouseup(function() {

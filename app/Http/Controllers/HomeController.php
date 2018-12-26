@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Pimcore\Model\DataObject\Ads;
+use Pimcore\Model\DataObject\Song;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $adLists->setCondition('validDate > ?', [Carbon::now()->timestamp]);
         $adLists->load();
         $ads = [];
+        $songs = [];
         if (!empty($adLists->getObjects())) {
             foreach ($adLists->getObjects() as $ad) {
                 $ads[] = [
@@ -37,8 +39,17 @@ class HomeController extends Controller
             }
         }
         $checkUserLevel = $this->getUserLevel();
+        $songList = new Song\Listing();
+        $songList->load();
+        if (!empty($songList->getObjects())) {
+            foreach ($songList->getObjects() as $song) {
+
+            }
+        }
+
         return view('home', [
-            'ads' => $ads
+            'ads' => $ads,
+            'songs' => $songs
         ]);
     }
 }
