@@ -21,7 +21,7 @@ class RegisterCustomController extends Controller
             'password'  => 'required'
         ]);
         if ($validator->fails()) {
-            return redirect('register')->withErrors($validator->errors());
+            return back()->withErrors($validator->errors());
         }
 
         $name       = ucwords($request->name);
@@ -46,13 +46,13 @@ class RegisterCustomController extends Controller
             $userPimcore->setPublished(true);
             $userPimcore->save();
 
-            return redirect()->with([
+            return back()->with([
                 'success' => 'Yoho, Register successfully ! Now you can login.'
             ]);
 
         } catch (\Exception $e) {
 
-            return redirect()->with([
+            return back()->with([
                 'failed' => 'OMG ! Something went wrong happened. Please contact your webadmin.'
             ]);
 

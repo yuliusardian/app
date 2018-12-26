@@ -4,6 +4,7 @@
     <div class="modal-dialog login_dialog">
         <div class="modal-content">
             <div class="modal-body">
+                <p style="color:#fff">{{ session('success') }}</p>
                 <div class="ms_register_img">
                     <img src="images/register_img.png" alt="" class="img-fluid" />
                 </div>
