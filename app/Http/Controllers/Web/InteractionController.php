@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Helpers\FavouriteHelper;
+use App\Helpers\HistoryHelper;
 use App\Helpers\QueueHelper;
 use Pimcore\Model\DataObject\Song;
 use Validator;
@@ -95,6 +96,7 @@ class InteractionController extends Controller
         if ($validator->fails()) {
             return response($validator->errors(), 200);
         }
+        $historyCollections = HistoryHelper::checkAndAdd($song_id);
         return response($song_id, 200);
     }
 
@@ -107,6 +109,11 @@ class InteractionController extends Controller
             return response($validator->errors(), 200);
         }
         $addToFavouriteFieldCollection = FavouriteHelper::checkAndAdd($song_id);
+        if ($addToFavouriteFieldCollection) {
+            return response([
+                'message' => __('texts.addToFavouriteSuccess')
+            ]);
+        }
         return response($song_id, 200);
     }
 
@@ -119,6 +126,11 @@ class InteractionController extends Controller
             return response($validator->errors(), 200);
         }
         $addToQueueCollections = QueueHelper::checkAndAdd($song_id);
+        if ($addToQueueCollections) {
+            return response([
+                'message' => __('texts.addToQueueSuccess')
+            ]);
+        }
         return response($song_id, 200);
     }
 

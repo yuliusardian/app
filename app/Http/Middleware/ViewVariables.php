@@ -29,6 +29,7 @@ class ViewVariables
             foreach ($queueCollection as $queue) {
                 $song = $queue->getSong();
                 $userPlaylist[] = [
+                    'id' => $song->getId(),
                     'image' => $song->getImg() ? \Pimcore\Tool::getHostUrl('http').$song->getImg()->getFullPath() : 'http://via.placeholder.com/100',
                     'title' => $song->getName(),
                     'artist' => $song->getArtist()->getName(),

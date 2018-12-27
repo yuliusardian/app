@@ -2427,6 +2427,7 @@ i.ms_icon.icon_share {
 .que_more {
 	padding-right: 10px;
 	cursor: pointer;
+	display: none;
 }
 .que_more:hover ul.more_option {
 	opacity: 1;
@@ -3172,15 +3173,21 @@ span.ms_frequency {
 	display: inline-block;
 }
 .modal-dialog button {
-	position: absolute;
+	background-color: white;
+	border: none;
+	color: #37c4e4;
+	text-align: center;
+	width: auto;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	position: relative;
+	border-radius: 5%;;
 	right: -12px;
 	z-index: 1;
 	top: -15px;
-	width: 30px;
 	height: 30px;
-	background-color: #fff;
 	opacity: 1;
-	border-radius: 100%;
 	cursor: pointer !important;
 }
 i.fa_icon.form_close {

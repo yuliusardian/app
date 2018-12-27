@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\ArtistHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Pimcore\Model\DataObject\SongArtist;
 
 class ArtistController extends Controller
 {
@@ -15,35 +15,10 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $featuredArtistListData = null;
-        $featuredArtistList = new SongArtist\Listing();
-        $featuredArtistList->setLimit(20);
-        $featuredArtistList->load();
-        if ($featuredArtistList->getCount() > 0) {
-            foreach ($featuredArtistList->getObjects() as $object) {
-                $tmpFeaturedArtist['id']    = $object->getId();
-                $tmpFeaturedArtist['name']  = $object->getName();
-                $tmpFeaturedArtist['img']   = $object->getImg() ? \Pimcore\Tool::getHostUrl().$object->getImg()->getFullPath() : 'http://via.placeholder.com/240';
-                $featuredArtistListData[]   = $tmpFeaturedArtist;
-            }
-        }
-
-        $topArtistListData = null;
-        $topArtistList = new SongArtist\Listing();
-        $topArtistList->setLimit(20);
-        $topArtistList->load();
-        if ($topArtistList->getCount() > 0) {
-            foreach ($topArtistList->getObjects() as $item) {
-                $tmpTopArtist['id']     = $item->getId();
-                $tmpTopArtist['name']   = $item->getName();
-                $tmpTopArtist['img']    = $item->getImg() ? \Pimcore\Tool::getHostUrl().$item->getImg()->getFullPath() : 'http://via.placeholder.com/240';
-                $topArtistListData[]    = $tmpTopArtist;
-            }
-        }
+        $featuredArtistListData = ArtistHelper::getArtist();
 
         return view('web.artist', [
             'featured_artists'  => $featuredArtistListData,
-            'top_artists'       => $topArtistListData
         ]);
     }
 

@@ -131,7 +131,7 @@ $(function() {
                         $("#jquery_jplayer_1").jPlayer("volume", volume);
                         $("#jquery_jplayer_1").jPlayer("unmute");
                     }
-                });z
+                });
 				
                 return false;
             }).mouseup(function() {

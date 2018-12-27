@@ -22,5 +22,7 @@ return [
     'newlyReleasedAlbums' => 'Album yang Baru Dirilis',
     'topArtist' => 'Artis Teratas',
     'yourFavourite' => 'Favorit Anda',
-    'newSong' => 'Lagu terbaru'
+    'newSong' => 'Lagu terbaru',
+    'addToFavouriteSuccess' => 'Berhasil menambahkan lagu ke favourite',
+    'addToQueueSuccess' => 'Berhasil menambahkan lagu ke antrian'
 ];

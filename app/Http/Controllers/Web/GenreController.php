@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\GenreHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,10 @@ class GenreController extends Controller
      */
     public function index()
     {
-        return view('web.genre');
+        $genres = GenreHelper::getGenre();
+        return view('web.genre', [
+            'genres' => $genres
+        ]);
     }
 
     /**

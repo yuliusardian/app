@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -209,29 +207,28 @@
                                     </a>
                                 </div>
                             </div>
-                            {{--<div class="play_song_options">--}}
-                                {{--<ul>--}}
-                                    {{--<li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>Add To Favourites</a></li>--}}
-                                    {{--<li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_playlist"></i></span>Add To Playlist</a></li>--}}
-                                    {{--<li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>Share</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
+                            <div class="play_song_options">
+                                <ul>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_fav"></i></span>@lang('buttons.addToFavourite')</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_playlist"></i></span>@lang('buttons.addToPlaylist')</a></li>
+                                    <li><a href="#"><span class="song_optn_icon"><i class="ms_icon icon_share"></i></span>@lang('buttons.share')</a></li>
+                                </ul>
+                            </div>
                             <span class="play-left-arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                         </div>
                         <!----Right Queue---->
                         <div class="jp_queue_wrapper">
-                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> queue</span>
+                            <span class="que_text" id="myPlaylistQueue"><i class="fa fa-angle-up" aria-hidden="true"></i> @lang('buttons.queue')</span>
                             <div id="playlist-wrap" class="jp-playlist">
                                 <div class="jp_queue_cls"><i class="fa fa-times" aria-hidden="true"></i></div>
-                                <h2>queue</h2>
+                                <h2>@lang('buttons.queue')</h2>
                                 <div class="jp_queue_list_inner">
                                     <ul>
                                         <li>&nbsp;</li>
                                     </ul>
                                 </div>
                                 <div class="jp_queue_btn">
-                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">clear</a>
-                                    <a href="clear_modal.html" class="ms_save" data-toggle="modal" data-target="#save_modal">save</a>
+                                    <a href="javascript:;" class="ms_clear" data-toggle="modal" data-target="#clear_modal">@lang('buttons.clear')</a>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +290,6 @@
 
     </div>
 
-    @if (Request::is('home'))
     <!-- Modal iklan -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -314,16 +310,17 @@
             </div>
         </div>
     </div>
-    @endif
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/swiper/js/swiper.min.js') }}"></script>
+    <input type="hidden" value="0" id="showAds">
+
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/swiper/js/swiper.min.js') }}"></script>
     <!-- modif this file -->
-        <script src="{{ asset('js/plugins/player/jplayer.playlist.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/player/jplayer.playlist.min.js') }}"></script>
     <!-- modif this file -->
-    <script src="{{ asset('js/plugins/player/jquery.jplayer.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/player/jquery.jplayer.min.js') }}"></script>
 
     {{--<script src="{{ asset('js/plugins/player/audio-player.js') }}"></script>--}}
 
@@ -341,107 +338,127 @@
                 playlistOptions: {
                     autoPlay: false,
                 },
+                swfPath: "js/plugins",
                 supplied: "oga, mp3",
+                wmode: "window",
+                useStateClassSkin: true,
+                autoBlur: false,
+                smoothPlayBar: true,
                 keyEnabled: true,
             });
 
-            var current = myPlaylist.current;
-            var playlist = myPlaylist.playlist;
-
-            $.each(playlist, function(index, obj) {
-                if (index == current) {
-                    $(".jp-now-playing").html("<div class='jp-track-name'><span class='que_img'><img src='"+obj.image+"' class='img-fluid' style='max-height: 45px;max-width: 75px'></span><div class='que_data'>" + obj.title + " <div class='jp-artist-name'>" + obj.artist + "</div></div></div>");
+            $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function(event) {
+                var showAds = parseInt($("#showAds").val());
+                if (showAds == 5) {
+                    $("#exampleModal").modal('show');
+                    $("#showAds").val(0);
                 }
-            });
-            $('.knob-wrapper').mousedown(function() {
-                $(window).mousemove(function(e) {
-                    var angle1 = getRotationDegrees($('.knob')),
-                        volume = angle1 / 270
-
-                    if (volume > 1) {
-                        $("#jquery_jplayer_1").jPlayer("volume", 1);
-                    } else if (volume <= 0) {
-                        $("#jquery_jplayer_1").jPlayer("mute");
-                    } else {
-                        $("#jquery_jplayer_1").jPlayer("volume", volume);
-                        $("#jquery_jplayer_1").jPlayer("unmute");
+                var current = myPlaylist.current;
+                var playlist = myPlaylist.playlist;
+                var idA = 0;
+                $.each(playlist, function(index, obj) {
+                    if (showAds != 5) {
+                        var increaseShowAds = showAds + 1;
+                        $("#showAds").val(increaseShowAds);
+                    }
+                    if (index == current) {
+                        idA = obj.id;
+                        $(".jp-now-playing").html("<div class='jp-track-name'><span class='que_img'><img src='"+obj.image+"' class='img-fluid' style='max-height: 45px;max-width: 75px'></span><div class='que_data'>" + obj.title + " <div class='jp-artist-name'>" + obj.artist + "</div></div></div>");
                     }
                 });
 
-                return false;
-            }).mouseup(function() {
-                $(window).unbind("mousemove");
-            });
+                if (event.type === 'jPlayer_play') {
+                    addRecentlyPlaylist(idA);
+                }
+
+                $('.knob-wrapper').mousedown(function() {
+                    $(window).mousemove(function(e) {
+                        var angle1 = getRotationDegrees($('.knob')),
+                            volume = angle1 / 270
+
+                        if (volume > 1) {
+                            $("#jquery_jplayer_1").jPlayer("volume", 1);
+                        } else if (volume <= 0) {
+                            $("#jquery_jplayer_1").jPlayer("mute");
+                        } else {
+                            $("#jquery_jplayer_1").jPlayer("volume", volume);
+                            $("#jquery_jplayer_1").jPlayer("unmute");
+                        }
+                    });
+
+                    return false;
+                }).mouseup(function() {
+                    $(window).unbind("mousemove");
+                });
 
 
-            function getRotationDegrees(obj) {
-                var matrix = obj.css("-webkit-transform") ||
-                    obj.css("-moz-transform")    ||
-                    obj.css("-ms-transform")     ||
-                    obj.css("-o-transform")      ||
-                    obj.css("transform");
-                if(matrix !== 'none') {
-                    var values = matrix.split('(')[1].split(')')[0].split(',');
-                    var a = values[0];
-                    var b = values[1];
-                    var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-                } else { var angle = 0; }
-                return (angle < 0) ? angle + 360 : angle;
-            }
+                function getRotationDegrees(obj) {
+                    var matrix = obj.css("-webkit-transform") ||
+                        obj.css("-moz-transform")    ||
+                        obj.css("-ms-transform")     ||
+                        obj.css("-o-transform")      ||
+                        obj.css("transform");
+                    if(matrix !== 'none') {
+                        var values = matrix.split('(')[1].split(')')[0].split(',');
+                        var a = values[0];
+                        var b = values[1];
+                        var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+                    } else { var angle = 0; }
+                    return (angle < 0) ? angle + 360 : angle;
+                }
 
-            var timeDrag = false;
-            $('.jp-play-bar').mousedown(function(e) {
-                timeDrag = true;
-                updatebar(e.pageX);
-
-            });
-            $(document).mouseup(function(e) {
-                if (timeDrag) {
-                    timeDrag = false;
+                var timeDrag = false;
+                $('.jp-play-bar').mousedown(function(e) {
+                    timeDrag = true;
                     updatebar(e.pageX);
-                }
-            });
-            $(document).mousemove(function(e) {
-                if (timeDrag) {
-                    updatebar(e.pageX);
-                }
-            });
-            var updatebar = function(x) {
-                var progress = $('.jp-progress');
-                var position = x - progress.offset().left;
-                var percentage = 100 * position / progress.width();
-                if (percentage > 100) {
-                    percentage = 100;
-                }
-                if (percentage < 0) {
-                    percentage = 0;
-                }
-                $("#jquery_jplayer_1").jPlayer("playHead", percentage);
-                $('.jp-play-bar').css('width', percentage + '%');
-            };
-            $('#playlist-toggle, #playlist-text, #playlist-wrap li a').unbind().on('click', function() {
-                $('#playlist-wrap').fadeToggle();
-                $('#playlist-toggle, #playlist-text').toggleClass('playlist-is-visible');
-            });
-            $('.hide_player').unbind().on('click', function() {
-                $('.audio-player').toggleClass('is_hidden');
-                $(this).html($(this).html() == '<i class="fa fa-angle-down"></i> HIDE' ? '<i class="fa fa-angle-up"></i> SHOW PLAYER' : '<i class="fa fa-angle-down"></i> HIDE');
-            });
-            $('body').unbind().on('click', '.audio-play-btn', function() {
-                $('.audio-play-btn').removeClass('is_playing');
-                $(this).addClass('is_playing');
-                var playlistId = $(this).data('playlist-id');
-                myPlaylist.play(playlistId);
-            });
 
-            $('#exampleModal').modal('show');
+                });
+                $(document).mouseup(function(e) {
+                    if (timeDrag) {
+                        timeDrag = false;
+                        updatebar(e.pageX);
+                    }
+                });
+                $(document).mousemove(function(e) {
+                    if (timeDrag) {
+                        updatebar(e.pageX);
+                    }
+                });
+                var updatebar = function(x) {
+                    var progress = $('.jp-progress');
+                    var position = x - progress.offset().left;
+                    var percentage = 100 * position / progress.width();
+                    if (percentage > 100) {
+                        percentage = 100;
+                    }
+                    if (percentage < 0) {
+                        percentage = 0;
+                    }
+                    $("#jquery_jplayer_1").jPlayer("playHead", percentage);
+                    $('.jp-play-bar').css('width', percentage + '%');
+                };
+                $('#playlist-toggle, #playlist-text, #playlist-wrap li a').unbind().on('click', function() {
+                    $('#playlist-wrap').fadeToggle();
+                    $('#playlist-toggle, #playlist-text').toggleClass('playlist-is-visible');
+                });
+                $('.hide_player').unbind().on('click', function() {
+                    $('.audio-player').toggleClass('is_hidden');
+                    $(this).html($(this).html() == '<i class="fa fa-angle-down"></i> HIDE' ? '<i class="fa fa-angle-up"></i> SHOW PLAYER' : '<i class="fa fa-angle-down"></i> HIDE');
+                });
+                $('body').unbind().on('click', '.audio-play-btn', function() {
+                    $('.audio-play-btn').removeClass('is_playing');
+                    $(this).addClass('is_playing');
+                    var playlistId = $(this).data('playlist-id');
+                    myPlaylist.play(playlistId);
+                });
 
+            });
 
             $("#clearAllPlaylist").click(function() {
                 myPlaylist.remove();
             });
 
-
+            // added 27 12 2018
             $(".addToFavouriteAction").click(function() {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
@@ -450,11 +467,10 @@
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function(result) {
-                        alert(result);
+                        alert(result.message);
                     }
                 });
             });
-
             $(".addToQueueAction").click(function () {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
@@ -463,18 +479,30 @@
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function(result) {
-                        alert(result);
+                        alert(result.message);
                     }
                 });
             });
 
+            function addRecentlyPlaylist(id){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: "POST",
+                    url: "{{ Route('web.interaction.play') }}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function(result) {
+                    }
+                });
+            }
+
         });
     </script>
 
-    <script src="{{ asset('js/plugins/player/volume.js') }}"></script>
-    <script src="{{ asset('js/plugins/nice_select/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/scroll/jquery.mCustomScrollbar.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
+    <script type="text/javascript" src="js/plugins/player/volume.js"></script>
+    <script type="text/javascript" src="js/plugins/nice_select/jquery.nice-select.min.js"></script>
+    <script type="text/javascript" src="js/plugins/scroll/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
 
     @stack('scripts')
 

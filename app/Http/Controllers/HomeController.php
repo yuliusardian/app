@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\AdHelper;
+use App\Helpers\AlbumHelper;
+use App\Helpers\ArtistHelper;
+use App\Helpers\GenreHelper;
+use App\Helpers\SongHelper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Pimcore\Model\DataObject\Ads;
 use Pimcore\Model\DataObject\Song;
 
 class HomeController extends Controller
@@ -26,25 +29,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $adLists = new Ads\Listing();
-        $adLists->setCondition('validDate > ?', [Carbon::now()->timestamp]);
-        $adLists->load();
-        $ads = [];
-        $songs = [];
-        if (!empty($adLists->getObjects())) {
-            foreach ($adLists->getObjects() as $ad) {
-                $ads[] = [
-                    'img' => $ad->getImg() ? \Pimcore\Tool::getHostUrl('https').$ad->getImg()->getThumbnail() : ''
-                ];
-            }
-        }
+        $ads = AdHelper::getAds();
         $isFreeUser = $this->isFree();
-        if ($isFreeUser) {
+        if (!$isFreeUser) {
             $ads = [];
         }
 
+        $topAlbum = AlbumHelper::getAlbum();
+        $newRilis = SongHelper::getSong();
+        $topArtist = ArtistHelper::getArtist();
+        $topWeekly = SongHelper::getSong();
+        $topGenre = GenreHelper::getGenre();
+
         return view('home', [
             'ads' => $ads,
+            'topAlbum' => $topAlbum,
+            'newRealease' => $newRilis,
+            'topArtist' => $topArtist,
+            'topWeekly' => $topWeekly,
+            'genres' => $topGenre
         ]);
     }
 }

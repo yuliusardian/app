@@ -18,4 +18,6 @@ return [
     'addToQueue' => 'Tambah ke antrian',
     'addToPlaylist' => 'Tambah ke playlist',
     'share' => 'Bagikan',
+    'clear' => 'Hapus',
+    'queue' => 'Antrian'
 ];

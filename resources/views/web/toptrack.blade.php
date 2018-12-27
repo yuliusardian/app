@@ -7,11 +7,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ms_heading">
-                            <h1>@lang('texts.weeklyTop', ['number' => 50])</h1>
+                            <h1>@lang('texts.weeklyTop', ['number' =>count($songs)])</h1>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 padding_right40">
                         @foreach($songs as $key => $song)
+
                             {{--ms_active_play--}}
                             <div class="ms_weekly_box">
                                 <div class="weekly_left">
@@ -34,14 +35,14 @@
                                     </div>
                                 </div>
                                 <div class="weekly_right">
-                                    <span class="w_song_time">5:10</span>
+                                    {{--<span class="w_song_time">5:10</span>--}}
                                     <span class="ms_more_icon" data-other="1">
 										<img src="images/svg/more.svg" alt="">
 									</span>
                                 </div>
                                 <ul class="more_option">
                                     <li><a href="#" class="addToFavouriteAction" song-id="{{ $song['id'] }}"><span class="opt_icon"><span class="icon icon_fav"></span></span>@lang('buttons.addToFavourite')</a></li>
-                                    <li><a href="#" class="addToQueueAction" song-id="{{ $song['id'] }}"><span class="opt_icon"><span class="icon icon_queue"></span></span>@lang('buttons.addToQueue')</a></li>
+                                    <li><a href="#" class="addToQueueAction" song-id="{{ $song['id'] }}" data-json='@json($song)'><span class="opt_icon"><span class="icon icon_queue"></span></span>@lang('buttons.addToQueue')</a></li>
                                     <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>@lang('buttons.addToPlaylist')</a></li>
                                     <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>@lang('buttons.share')</a></li>
                                 </ul>
