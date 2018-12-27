@@ -433,13 +433,13 @@
         </div>
     </div>
 
-    <div class="ms_advr_wrapper ms_advr2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <a href="#"><img src="http://via.placeholder.com/730x90" alt="" class="img-fluid"/></a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--<div class="ms_advr_wrapper ms_advr2">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-12">--}}
+                    {{--<a href="#"><img src="http://via.placeholder.com/730x90" alt="" class="img-fluid"/></a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection

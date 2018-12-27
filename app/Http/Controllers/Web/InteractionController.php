@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\FavouriteHelper;
+use App\Helpers\QueueHelper;
 use Pimcore\Model\DataObject\Song;
 use Validator;
 use Illuminate\Http\Request;
@@ -104,6 +106,19 @@ class InteractionController extends Controller
         if ($validator->fails()) {
             return response($validator->errors(), 200);
         }
+        $addToFavouriteFieldCollection = FavouriteHelper::checkAndAdd($song_id);
+        return response($song_id, 200);
+    }
+
+    public function queue($song_id)
+    {
+        $validator = Validator::make(['song_id' => $song_id], [
+            'song_id' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response($validator->errors(), 200);
+        }
+        $addToQueueCollections = QueueHelper::checkAndAdd($song_id);
         return response($song_id, 200);
     }
 

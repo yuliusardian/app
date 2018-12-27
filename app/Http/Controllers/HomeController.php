@@ -38,18 +38,13 @@ class HomeController extends Controller
                 ];
             }
         }
-        $checkUserLevel = $this->getUserLevel();
-        $songList = new Song\Listing();
-        $songList->load();
-        if (!empty($songList->getObjects())) {
-            foreach ($songList->getObjects() as $song) {
-
-            }
+        $isFreeUser = $this->isFree();
+        if ($isFreeUser) {
+            $ads = [];
         }
 
         return view('home', [
             'ads' => $ads,
-            'songs' => $songs
         ]);
     }
 }

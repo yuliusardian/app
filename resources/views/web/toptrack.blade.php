@@ -40,8 +40,8 @@
 									</span>
                                 </div>
                                 <ul class="more_option">
-                                    <li><a href="#" id="addToFavouriteAction" song-id="{{ $song['id'] }}"><span class="opt_icon"><span class="icon icon_fav"></span></span>@lang('buttons.addToFavourite')</a></li>
-                                    <li><a href="#"><span class="opt_icon"><span class="icon icon_queue"></span></span>@lang('buttons.addToQueue')</a></li>
+                                    <li><a href="#" class="addToFavouriteAction" song-id="{{ $song['id'] }}"><span class="opt_icon"><span class="icon icon_fav"></span></span>@lang('buttons.addToFavourite')</a></li>
+                                    <li><a href="#" class="addToQueueAction" song-id="{{ $song['id'] }}"><span class="opt_icon"><span class="icon icon_queue"></span></span>@lang('buttons.addToQueue')</a></li>
                                     <li><a href="#"><span class="opt_icon"><span class="icon icon_playlst"></span></span>@lang('buttons.addToPlaylist')</a></li>
                                     <li><a href="#"><span class="opt_icon"><span class="icon icon_share"></span></span>@lang('buttons.share')</a></li>
                                 </ul>

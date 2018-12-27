@@ -59,4 +59,13 @@ class Controller extends DefaultController
         $userObj = $this->getUser();
         return $userObj;
     }
+
+    public function isFree()
+    {
+        $userObj = $this->getUser();
+        if ($userObj->getLevel()->getCode() == 'free') {
+            return false;
+        }
+        return false;
+    }
 }

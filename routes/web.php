@@ -57,7 +57,8 @@ Route::group(['middleware' => ['auth', 'view.variable']], function () {
             return Response('Test', 201);
         });
 
-        Route::post('favourite/{song_id}', 'Web\InteractionController@favourite')->name('web.interaction.favourite');
+        Route::post('favourite/{song_id?}', 'Web\InteractionController@favourite')->name('web.interaction.favourite');
+        Route::post('queue/{song_id?}', 'Web\InteractionController@queue')->name('web.interaction.queue');
         Route::post('play/{song_id}', 'Web\InteractionController@play')->name('web.interaction.play');
         Route::post('search', 'Web\InteractionController@search')->name('web.interaction.search');
     });
