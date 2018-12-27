@@ -293,6 +293,7 @@
 
     </div>
 
+    @if (Request::is('home'))
     <!-- Modal iklan -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -313,6 +314,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
