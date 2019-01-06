@@ -8,6 +8,8 @@
 
 namespace App\Helpers;
 
+require_once env('PIMCORE_PATH');
+
 use Pimcore\Model\DataObject\User as UserPimcore;
 use Pimcore\Model\DataObject\Song;
 use Pimcore\Model\DataObject;
@@ -36,5 +38,15 @@ class HistoryHelper
         $userPimcore->save();
 
         return true;
+    }
+
+    public static function getHistory()
+    {
+        $historyCollections = null;
+        if (auth()->id()) {
+            $user = UserPimcore::getById(auth()->id(), 1);
+            $historyCollections = $user->getRecentlyPlayed() ? $user->getRecentlyPlayed()->getItems() : null;
+        }
+        return $historyCollections;
     }
 }

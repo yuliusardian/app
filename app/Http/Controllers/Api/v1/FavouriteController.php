@@ -1,36 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Helpers\HistoryHelper;
+use App\Helpers\FavouriteHelper;
 
-class HistoryController extends Controller
+class FavouriteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $histories = HistoryHelper::getHistory();
-        $historydata = [];
-        if (!empty($histories)) {
-            foreach ($histories as $history) {
-                $songObj = $history->getSong();
-                $historydata[] = [
+        $favouriteCollections = FavouriteHelper::getFavourites();
+        $favourites = [];
+        if (!empty($favouriteCollections)) {
+            foreach ($favouriteCollections as $favouriteCollection) {
+                $songObj = $favouriteCollection->getSong();
+                $favourites[] = [
+                    'img' => $songObj->getImg() ? $songObj->getFullPath() : null,
                     'name' => $songObj->getName(),
-                    'image' => $songObj->getImg() ? $songObj->getImg()->getFullPath() : null,
                     'mp3' => $songObj->getFile() ? $songObj->getFile()->getFullPath() : null,
+                    'album' => $songObj->getAlbum() ? $songObj->getAlbum()->getName() : null,
+                    'genre' => $songObj->getGenre() ? $songObj->getGenre()->getName() : null,
                     'artist' => $songObj->getArtist() ? $songObj->getArtist()->getName() : null
                 ];
             }
         }
-        return view('web.history', [
-            'songs' => $historydata
-        ]);
+
+        $this->setCode(__('favourite.success'));
+        $this->setMessage(__('favourite.success'));
+        $this->setData($favourites);
+
+        return $this->getReturn();
     }
 
     /**

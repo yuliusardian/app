@@ -24,5 +24,6 @@ return [
     'yourFavourite' => 'Favorit Anda',
     'newSong' => 'Lagu terbaru',
     'addToFavouriteSuccess' => 'Berhasil menambahkan lagu ke favourite',
-    'addToQueueSuccess' => 'Berhasil menambahkan lagu ke antrian'
+    'addToQueueSuccess' => 'Berhasil menambahkan lagu ke antrian',
+    'historySong' => 'Riwayat lagu yang sudah didengerkan',
 ];

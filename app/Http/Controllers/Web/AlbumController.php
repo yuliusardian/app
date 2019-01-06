@@ -9,9 +9,9 @@ use App\Http\Controllers\Controller;
 class AlbumController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * mengambil seluruh data album dari class albumhelper
+     * pada static function get album dan menyimpannya pada variable featuredalbumlistdata
+     * sesudah itu melempar variable tersebut kedalam view
      */
     public function index()
     {

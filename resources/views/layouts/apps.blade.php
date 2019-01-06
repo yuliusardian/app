@@ -26,6 +26,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/scroll/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
+    <link rel="shortcut icon" type="image/png" href="{{ url('images/favicon.png') }}">
+
 
 </head>
 <body>

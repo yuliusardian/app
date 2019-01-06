@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Helpers\HistoryHelper;
+use App\Helpers\AlbumHelper;
 
-class HistoryController extends Controller
+class AlbumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,22 +15,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $histories = HistoryHelper::getHistory();
-        $historydata = [];
-        if (!empty($histories)) {
-            foreach ($histories as $history) {
-                $songObj = $history->getSong();
-                $historydata[] = [
-                    'name' => $songObj->getName(),
-                    'image' => $songObj->getImg() ? $songObj->getImg()->getFullPath() : null,
-                    'mp3' => $songObj->getFile() ? $songObj->getFile()->getFullPath() : null,
-                    'artist' => $songObj->getArtist() ? $songObj->getArtist()->getName() : null
-                ];
-            }
-        }
-        return view('web.history', [
-            'songs' => $historydata
-        ]);
+        //
     }
 
     /**
@@ -97,5 +82,15 @@ class HistoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function newest(Request $request)
+    {
+        $albums = AlbumHelper::getAlbum();
+        $this->setCode(__('album.success'));
+        $this->setMessage(__('album.success'));
+        $this->setData($albums);
+
+        return $this->getReturn();
     }
 }

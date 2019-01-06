@@ -96,7 +96,7 @@ class InteractionController extends Controller
         if ($validator->fails()) {
             return response($validator->errors(), 200);
         }
-        $historyCollections = HistoryHelper::checkAndAdd($song_id);
+//        $historyCollections = HistoryHelper::checkAndAdd($song_id);
         return response($song_id, 200);
     }
 

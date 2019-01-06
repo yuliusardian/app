@@ -27,23 +27,24 @@ Route::group(['prefix' => 'v1'], function () {
             Route::get('logout', 'Api\v1\AuthenticatedController@logout');
         });
 
-        Route::group(['prefix' => 'member'], function () {
-            Route::get('detail', function () {
-                return response('detail', 200);
-            });
-            Route::post('update', function () {
-                return response('update', 200);
-            });
+        Route::group(['prefix' => 'album'], function () {
+            Route::get('newest', 'Api\v1\AlbumController@newest');
         });
 
-        Route::group(['prefix' => 'interaction'], function () {
-            Route::get('/', function () {
-                return Response('Test', 201);
-            });
+        Route::group(['prefix' => 'artist'], function () {
+            Route::get('newest', 'Api\v1\ArtistController@newest');
+        });
 
-            Route::post('favourite', function () {
-                return Response('favourite', 201);
-            })->name('interaction.favourite');
+        Route::group(['prefix' => 'genre'], function () {
+            Route::get('newest', 'Api\v1\GenreController@newest');
+        });
+
+        Route::group(['prefix' => 'toptrack'], function () {
+            Route::get('top', 'Api\v1\TopTrackController@top');
+        });
+
+        Route::group(['prefix' => 'favourite'], function () {
+            Route::get('/', 'Api\v1\FavouriteController@index');
         });
 
     });

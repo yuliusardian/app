@@ -28,6 +28,7 @@ class AuthenticatedController extends Controller
             $this->setCode('register.validation.failed');
             $this->setMessage('register.validation.failed');
             $this->setData($validator->errors());
+
             return $this->getReturn();
         }
 
@@ -74,6 +75,7 @@ class AuthenticatedController extends Controller
         if ($validator->fails()) {
             $this->setCode('login.validation.failed');
             $this->setMessage('login.validation.failed');
+            $this->setData($validator->errors());
 
             return $this->getReturn();
         }

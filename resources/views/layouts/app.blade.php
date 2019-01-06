@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/scroll/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
+    <link rel="shortcut icon" type="image/png" href="{{ url('images/favicon.png') }}">
 
 </head>
 <body>
@@ -485,6 +486,7 @@
             });
 
             function addRecentlyPlaylist(id){
+                console.log(id);
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
